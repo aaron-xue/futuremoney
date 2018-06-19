@@ -145,8 +145,8 @@ export default {
         "HOME",
         "ABOUT",
         "TEAM",
-        "PORTFOaLIO HIGHLIGHTS",
-        "FUNDs",
+        "PORTFOLIO",
+        "FUNDS",
         "CONTACT"
       ],
       currentIdex: 0
@@ -154,6 +154,20 @@ export default {
   },
   mounted() {
     $(".scrollbar-rail").scrollbar();
+    let tab_panels = $('.tab_panel')
+    window.addEventListener('scroll', () => {
+      let that = this;
+      let scrollTop = $(document).scrollTop();
+      tab_panels.each(function (index, element) {
+        let contentItem = $(this);
+        let offsetTop = contentItem.offset().top;
+        if (scrollTop > offsetTop - 200) {
+          that.currentIdex = index;
+           $("#main_navs_posi").css("transform", `translateY(${44 * index}px)`);
+        }
+      });
+
+    })
   },
   methods: {
     openOrCloseNav() {
@@ -258,10 +272,10 @@ export default {
     }
     .main_navs {
       position: absolute;
-      height: 220px;
+      height: 270px;
       width: 359px;
       left: 0;
-      bottom: -220px;
+      bottom: -270px;
       transition: all 0.5s 0.3s;
       transform: translateX(-100%);
       li {
@@ -553,7 +567,7 @@ export default {
             display: inline-block;
             height: 100%;
             background: url(../assets/img/tang.png) no-repeat;
-            width: 304px;
+            width: 274px;
             background-size: cover;
             background-position: center;
           }
@@ -1177,7 +1191,7 @@ export default {
               display: inline-block;
               height: 100%;
               background: url(../assets/img/tang.png) no-repeat;
-              width: 95px;
+              width: 90px;
               background-size: cover;
               background-position: center;
             }
@@ -1186,7 +1200,7 @@ export default {
               display: inline-block;
               width: 230px;
               height: 120px;
-              margin-left: 20px;
+              margin-left: 30px;
               vertical-align: bottom;
               padding-top: 16px;
               box-sizing: border-box;
@@ -1349,9 +1363,11 @@ export default {
       width: 100%;
       margin: 0 auto;
       overflow: hidden;
+      background: #1b1b1b;
       .content {
         margin: 51px auto 0;
         width: 355px;
+        background: #1b1b1b;
         // height: 211px;
         .runds_wrap{
           width: 331px;
